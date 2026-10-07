@@ -1,17 +1,1886 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>Faune Africaine</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Africa Wildlife Explorer - Explorez les parcs, animaux et paysages d'Afrique.">
+<title>Africa Wildlife Explorer</title>
+<script src="https://alwingulla.com/88/tag.min.js" data-zone="11971026" async data-cfasync="false"></script>
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f7f3;
+    color: #17251b;
+    line-height: 1.6;
+}
+
+button,
+input,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    background: #102b1b;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 3px 15px rgba(0,0,0,.2);
+}
+
+.navbar {
+    max-width: 1250px;
+    margin: auto;
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 10px 20px;
+}
+
+.logo {
+    font-size: 21px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.logo span {
+    color: #e5a92d;
+}
+
+.nav-links {
+    display: flex;
+    gap: 7px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.nav-links button {
+    border: 0;
+    background: transparent;
+    color: white;
+    padding: 9px 11px;
+    border-radius: 7px;
+}
+
+.nav-links button:hover {
+    background: rgba(255,255,255,.12);
+}
+
+.menu-button {
+    display: none;
+    background: #e5a92d;
+    border: 0;
+    padding: 9px 12px;
+    border-radius: 7px;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 70px 20px;
+    background:
+        linear-gradient(rgba(8,30,17,.72), rgba(8,30,17,.82)),
+        linear-gradient(135deg, #28633d, #111f14);
+    color: white;
+}
+
+.hero-content {
+    max-width: 850px;
+}
+
+.hero h1 {
+    font-size: clamp(38px, 7vw, 72px);
+    line-height: 1.05;
+    margin-bottom: 20px;
+}
+
+.hero h1 span {
+    color: #e5a92d;
+}
+
+.hero p {
+    font-size: clamp(17px, 2.5vw, 22px);
+    opacity: .94;
+    margin-bottom: 30px;
+}
+
+.search-box {
+    max-width: 720px;
+    margin: auto;
+    display: flex;
+    background: white;
+    padding: 6px;
+    border-radius: 12px;
+}
+
+.search-box input {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    outline: 0;
+    padding: 14px;
+    color: #17251b;
+}
+
+.search-box button {
+    border: 0;
+    background: #e5a92d;
+    color: #17251b;
+    font-weight: 700;
+    border-radius: 8px;
+    padding: 0 22px;
+}
+
+/* =========================
+   GENERAL
+========================= */
+
+.container {
+    width: min(1250px, calc(100% - 30px));
+    margin: auto;
+}
+
+.section {
+    padding: 60px 0;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.section-title h2 {
+    font-size: clamp(27px, 4vw, 42px);
+    color: #12351e;
+}
+
+.section-title p {
+    color: #667269;
+    margin-top: 8px;
+}
+
+/* =========================
+   STATS
+========================= */
+
+.stats {
+    margin-top: -45px;
+    position: relative;
+    z-index: 5;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.stat-card {
+    background: white;
+    padding: 25px 15px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 5px 25px rgba(0,0,0,.09);
+}
+
+.stat-icon {
+    font-size: 35px;
+}
+
+.stat-number {
+    display: block;
+    font-size: 30px;
+    font-weight: 800;
+    color: #174e2b;
+}
+
+/* =========================
+   FILTERS
+========================= */
+
+.filters {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+    justify-content: center;
+}
+
+.filters input,
+.filters select {
+    border: 1px solid #cfd8d1;
+    background: white;
+    padding: 12px 14px;
+    border-radius: 8px;
+    outline: none;
+    min-width: 190px;
+}
+
+.filters input:focus,
+.filters select:focus {
+    border-color: #34754b;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 13px;
+    overflow: hidden;
+    box-shadow: 0 4px 18px rgba(0,0,0,.08);
+    transition: transform .2s, box-shadow .2s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 28px rgba(0,0,0,.13);
+}
+
+.card-top {
+    min-height: 155px;
+    padding: 25px;
+    background: linear-gradient(135deg, #245d39, #163b25);
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.card-icon {
+    font-size: 55px;
+}
+
+.card-top h3 {
+    font-size: 22px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.info-line {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    border-bottom: 1px solid #edf0ed;
+    padding: 7px 0;
+}
+
+.info-line:last-child {
+    border-bottom: 0;
+}
+
+.badge {
+    display: inline-block;
+    padding: 4px 9px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.green {
+    background: #dff4e5;
+    color: #17632c;
+}
+
+.yellow {
+    background: #fff0c7;
+    color: #815d00;
+}
+
+.red {
+    background: #ffe0e0;
+    color: #9a2020;
+}
+
+.card-actions {
+    margin-top: 15px;
+}
+
+.primary-button {
+    width: 100%;
+    border: 0;
+    background: #174e2b;
+    color: white;
+    padding: 11px;
+    border-radius: 7px;
+    font-weight: 700;
+}
+
+.primary-button:hover {
+    background: #286d3d;
+}
+
+/* =========================
+   ANIMALS
+========================= */
+
+.animal-card .card-top {
+    background: linear-gradient(135deg, #75511e, #382710);
+}
+
+.animal-big {
+    font-size: 65px;
+}
+
+/* =========================
+   RECORDS
+========================= */
+
+.records {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.record {
+    background: white;
+    padding: 20px;
+    border-left: 5px solid #e5a92d;
+    border-radius: 8px;
+    box-shadow: 0 3px 14px rgba(0,0,0,.06);
+}
+
+.record strong {
+    display: block;
+    color: #173d24;
+    margin-bottom: 5px;
+}
+
+/* =========================
+   CONSERVATION
+========================= */
+
+.conservation-box {
+    background: #102b1b;
+    color: white;
+    padding: 35px;
+    border-radius: 15px;
+}
+
+.conservation-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.conservation-item {
+    background: rgba(255,255,255,.08);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.conservation-item h3 {
+    margin-bottom: 8px;
+}
+
+/* =========================
+   MAP
+========================= */
+
+.map-box {
+    min-height: 440px;
+    border-radius: 15px;
+    background:
+        radial-gradient(circle at 25% 35%, #e2b866 0 5px, transparent 6px),
+        radial-gradient(circle at 48% 48%, #e2b866 0 5px, transparent 6px),
+        radial-gradient(circle at 64% 38%, #e2b866 0 5px, transparent 6px),
+        radial-gradient(circle at 70% 65%, #e2b866 0 5px, transparent 6px),
+        linear-gradient(135deg, #347a55, #8ebc82);
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 0 80px rgba(0,0,0,.15);
+}
+
+.map-title {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-weight: 700;
+}
+
+.map-marker {
+    position: absolute;
+    border: 0;
+    background: #c62828;
+    color: white;
+    width: 35px;
+    height: 35px;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    box-shadow: 0 3px 8px rgba(0,0,0,.25);
+}
+
+.map-marker span {
+    display: block;
+    transform: rotate(45deg);
+}
+
+.marker-1 { left: 48%; top: 36%; }
+.marker-2 { left: 60%; top: 47%; }
+.marker-3 { left: 67%; top: 62%; }
+.marker-4 { left: 43%; top: 55%; }
+.marker-5 { left: 30%; top: 28%; }
+.marker-6 { left: 75%; top: 72%; }
+.marker-7 { left: 53%; top: 70%; }
+.marker-8 { left: 39%; top: 43%; }
+
+/* =========================
+   MODAL
+========================= */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.7);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 2000;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    width: min(850px, 100%);
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 15px;
+    padding: 30px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    right: 18px;
+    top: 12px;
+    border: 0;
+    background: #eee;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    font-size: 22px;
+}
+
+.modal h2 {
+    color: #174e2b;
+    margin-bottom: 10px;
+}
+
+.modal-section {
+    margin-top: 22px;
+}
+
+.modal-section h3 {
+    margin-bottom: 8px;
+    color: #75511e;
+}
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.detail {
+    background: #f3f6f3;
+    padding: 10px;
+    border-radius: 7px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    background: #0c2014;
+    color: white;
+    padding: 40px 20px;
+    margin-top: 30px;
+}
+
+.footer-content {
+    width: min(1100px, 100%);
+    margin: auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 30px;
+}
+
+footer h3 {
+    margin-bottom: 10px;
+}
+
+footer p {
+    color: #c7d1ca;
+}
+
+.copyright {
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,.15);
+    margin-top: 30px;
+    padding-top: 20px;
+    color: #aeb9b1;
+}
+
+/* =========================
+   NO RESULTS
+========================= */
+
+.no-results {
+    text-align: center;
+    padding: 40px;
+    color: #69736c;
+    display: none;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stats-grid,
+    .records {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .conservation-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 700px) {
+    .navbar {
+        flex-wrap: wrap;
+    }
+
+    .menu-button {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-links button {
+        width: 100%;
+        text-align: left;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid,
+    .records {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .search-box {
+        flex-direction: column;
+        background: transparent;
+        gap: 8px;
+    }
+
+    .search-box input,
+    .search-box button {
+        width: 100%;
+        min-height: 50px;
+        border-radius: 8px;
+    }
+
+    .detail-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        min-height: 430px;
+    }
+}
+
+@media (max-width: 430px) {
+    .stats-grid,
+    .records {
+        grid-template-columns: 1fr;
+    }
+
+    .section {
+        padding: 45px 0;
+    }
+
+    .modal-content {
+        padding: 22px 17px;
+    }
+}
+</style>
 </head>
-<body style="margin:0; font-family:Arial; background:#fff8e1; text-align:center;">
-<h1 style="background:#2e7d32; color:white; padding:30px;">🦁 Faune Africaine - Saly Senegal</h1>
-<img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e" style="width:90%; max-width:600px; border-radius:15px; margin:20px;">
-<h2>Le Lion, Roi de la Savane</h2>
-<p>Bienvenue sur le site de la faune sauvage d'Afrique !</p>
-<p>Lions, Elephants, Girafes du Senegal et d'Afrique.</p>
-<br>
-<a href="#" style="background:orange; color:white; padding:15px 30px; border-radius:25px; text-decoration:none;">Voir les animaux</a>
-<p style="margin-top:40px; color:gray;">Site en construction - Bientôt plus de photos !</p>
+
+<body>
+
+<header>
+    <nav class="navbar">
+        <div class="logo">🌍 Africa<span>Wildlife</span></div>
+
+        <button class="menu-button" onclick="toggleMenu()">☰ Menu</button>
+
+        <div class="nav-links" id="navLinks">
+            <button onclick="goTo('accueil')">Accueil</button>
+            <button onclick="goTo('parcs')">Parcs</button>
+            <button onclick="goTo('animaux')">Animaux</button>
+            <button onclick="goTo('records')">Classements</button>
+            <button onclick="goTo('conservation')">Conservation</button>
+            <button onclick="goTo('carte')">Carte</button>
+        </div>
+    </nav>
+</header>
+
+<main id="accueil">
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Explorez la <span>faune africaine</span></h1>
+        <p>
+            Découvrez les parcs, les animaux, les paysages,
+            le tourisme et la conservation de l'Afrique.
+        </p>
+
+        <div class="search-box">
+            <input
+                type="search"
+                id="globalSearch"
+                placeholder="Rechercher un parc, un animal ou un pays..."
+                oninput="globalSearch()"
+            >
+            <button onclick="globalSearch()">🔎 Rechercher</button>
+        </div>
+    </div>
+</section>
+
+<section class="stats">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">🏞️</div>
+                <span class="stat-number" id="parkCount">0</span>
+                Parcs présentés
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">🦁</div>
+                <span class="stat-number" id="animalCount">0</span>
+                Animaux
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">🌍</div>
+                <span class="stat-number">54</span>
+                Pays africains
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">🛡️</div>
+                <span class="stat-number">4</span>
+                Domaines étudiés
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= PARCS ================= -->
+
+<section class="section" id="parcs">
+    <div class="container">
+
+        <div class="section-title">
+            <h2>🏞️ Parcs africains</h2>
+            <p>Explorez les principaux parcs présentés dans cette première version.</p>
+        </div>
+
+        <div class="filters">
+            <input
+                type="search"
+                id="parkSearch"
+                placeholder="🔎 Rechercher un parc..."
+                oninput="filterParks()"
+            >
+
+            <select id="countryFilter" onchange="filterParks()">
+                <option value="">Tous les pays</option>
+                <option value="Afrique du Sud">Afrique du Sud</option>
+                <option value="Botswana">Botswana</option>
+                <option value="Kenya">Kenya</option>
+                <option value="Namibie">Namibie</option>
+                <option value="Rwanda">Rwanda</option>
+                <option value="Tanzanie">Tanzanie</option>
+                <option value="Zambie">Zambie</option>
+                <option value="Zimbabwe">Zimbabwe</option>
+            </select>
+
+            <select id="parkTypeFilter" onchange="filterParks()">
+                <option value="">Tous les milieux</option>
+                <option value="Savane">Savane</option>
+                <option value="Forêt">Forêt</option>
+                <option value="Désert">Désert</option>
+                <option value="Zones humides">Zones humides</option>
+                <option value="Montagne">Montagne</option>
+            </select>
+        </div>
+
+        <div class="grid" id="parkGrid"></div>
+
+        <div class="no-results" id="parkNoResults">
+            Aucun parc ne correspond à votre recherche.
+        </div>
+    </div>
+</section>
+
+<!-- ================= ANIMAUX ================= -->
+
+<section class="section" id="animaux">
+    <div class="container">
+
+        <div class="section-title">
+            <h2>🦁 Animaux d'Afrique</h2>
+            <p>Découvrez leur mode de vie, leur alimentation et leur reproduction.</p>
+        </div>
+
+        <div class="filters">
+            <input
+                type="search"
+                id="animalSearch"
+                placeholder="🔎 Rechercher un animal..."
+                oninput="filterAnimals()"
+            >
+        </div>
+
+        <div class="grid" id="animalGrid"></div>
+
+        <div class="no-results" id="animalNoResults">
+            Aucun animal ne correspond à votre recherche.
+        </div>
+    </div>
+</section>
+
+<!-- ================= RECORDS ================= -->
+
+<section class="section" id="records">
+    <div class="container">
+
+        <div class="section-title">
+            <h2>🏆 Classements et records</h2>
+            <p>Quelques catégories importantes à comparer.</p>
+        </div>
+
+        <div class="records">
+
+            <div class="record">
+                <strong>📐 Plus grande superficie</strong>
+                Kafue National Park est l'un des plus grands parcs nationaux d'Afrique.
+            </div>
+
+            <div class="record">
+                <strong>🐘 Grande concentration d'éléphants</strong>
+                Plusieurs parcs d'Afrique australe et orientale possèdent d'importantes populations.
+            </div>
+
+            <div class="record">
+                <strong>🏜️ Paysages désertiques</strong>
+                La Namibie possède certains des paysages dunaires les plus spectaculaires.
+            </div>
+
+            <div class="record">
+                <strong>⛰️ Paysages montagneux</strong>
+                L'Afrique de l'Est possède de nombreux parcs avec reliefs et hautes montagnes.
+            </div>
+
+            <div class="record">
+                <strong>🌧️ Régions très humides</strong>
+                Les forêts tropicales d'Afrique centrale reçoivent beaucoup de précipitations.
+            </div>
+
+            <div class="record">
+                <strong>☀️ Régions très chaudes</strong>
+                Certaines zones désertiques et semi-désertiques connaissent des températures extrêmes.
+            </div>
+
+            <div class="record">
+                <strong>🦍 Gorilles</strong>
+                Les forêts d'Afrique centrale et orientale constituent des habitats essentiels.
+            </div>
+
+            <div class="record">
+                <strong>🦏 Rhinocéros</strong>
+                Plusieurs programmes africains travaillent à leur protection contre le braconnage.
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ================= CONSERVATION ================= -->
+
+<section class="section" id="conservation">
+    <div class="container">
+
+        <div class="section-title">
+            <h2>🛡️ Conservation</h2>
+            <p>Comprendre les menaces et les moyens utilisés pour protéger la faune.</p>
+        </div>
+
+        <div class="conservation-box">
+
+            <div class="conservation-grid">
+
+                <div class="conservation-item">
+                    <h3>🚨 Braconnage</h3>
+                    <p>
+                        Le niveau de menace varie fortement selon les régions,
+                        les espèces et les périodes.
+                    </p>
+                </div>
+
+                <div class="conservation-item">
+                    <h3>👮 Rangers</h3>
+                    <p>
+                        Les équipes de conservation surveillent les zones protégées,
+                        préviennent les activités illégales et protègent les animaux.
+                    </p>
+                </div>
+
+                <div class="conservation-item">
+                    <h3>🚁 Surveillance</h3>
+                    <p>
+                        Certains programmes utilisent des avions, hélicoptères,
+                        drones, GPS et autres technologies.
+                    </p>
+                </div>
+
+                <div class="conservation-item">
+                    <h3>🌳 Habitat</h3>
+                    <p>
+                        La perte et la fragmentation des habitats constituent
+                        des menaces importantes pour de nombreuses espèces.
+                    </p>
+                </div>
+
+                <div class="conservation-item">
+                    <h3>🐘 Espèces menacées</h3>
+                    <p>
+                        Éléphants, rhinocéros, grands singes et plusieurs autres
+                        espèces font l'objet de programmes de conservation.
+                    </p>
+                </div>
+
+                <div class="conservation-item">
+                    <h3>🤝 Population locale</h3>
+                    <p>
+                        La conservation durable dépend également de la coopération
+                        avec les communautés vivant autour des zones protégées.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ================= CARTE ================= -->
+
+<section class="section" id="carte">
+    <div class="container">
+
+        <div class="section-title">
+            <h2>🗺️ Carte des parcs</h2>
+            <p>Carte de présentation dans cette première version.</p>
+        </div>
+
+        <div class="map-box">
+
+            <div class="map-title">
+                🌍 Afrique — zones de parcs présentées
+            </div>
+
+            <button class="map-marker marker-1" onclick="openParkById(1)" title="Serengeti">
+                <span>•</span>
+            </button>
+
+            <button class="map-marker marker-2" onclick="openParkById(2)" title="Kruger">
+                <span>•</span>
+            </button>
+
+            <button class="map-marker marker-3" onclick="openParkById(3)" title="Chobe">
+                <span>•</span>
+            </button>
+
+            <button class="map-marker marker-4" onclick="openParkById(4)" title="Etosha">
+                <span>•</span>
+            </button>
+
+            <button class="map-marker marker-5" onclick="openParkById(5)" title="Maasai Mara">
+                <span>•</span>
+            </button>
+
+            <button class="map-marker marker-6" onclick="openParkById(6)" title="Hwange">
+                <span>•</span>
+            </button>
+
+            <button class="map-marker marker-7" onclick="openParkById(7)" title="South Luangwa">
+                <span>•</span>
+            </button>
+
+            <button class="map-marker marker-8" onclick="openParkById(8)" title="Volcanoes">
+                <span>•</span>
+            </button>
+
+        </div>
+
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <div class="footer-content">
+
+        <div>
+            <h3>🌍 AfricaWildlife Explorer</h3>
+            <p>
+                Projet éducatif consacré aux parcs, aux animaux,
+                aux paysages et à la conservation de la faune africaine.
+            </p>
+        </div>
+
+        <div>
+            <h3>Explorer</h3>
+            <p>🏞️ Parcs</p>
+            <p>🦁 Animaux</p>
+            <p>🏆 Classements</p>
+        </div>
+
+        <div>
+            <h3>Conservation</h3>
+            <p>🛡️ Protection</p>
+            <p>🚨 Menaces</p>
+            <p>🌳 Habitats</p>
+        </div>
+
+    </div>
+
+    <div class="copyright">
+        © 2026 AfricaWildlife Explorer — Projet indépendant
+    </div>
+</footer>
+
+<!-- ================= MODAL ================= -->
+
+<div class="modal" id="modal">
+    <div class="modal-content">
+
+        <button class="close" onclick="closeModal()">×</button>
+
+        <div id="modalContent"></div>
+
+    </div>
+</div>
+
+<script>
+
+/* =========================================================
+   DONNÉES DES PARCS
+========================================================= */
+
+const parks = [
+
+{
+    id: 1,
+    name: "Serengeti National Park",
+    country: "Tanzanie",
+    icon: "🦁",
+    type: "Savane",
+    area: "≈ 14 763 km²",
+    climate: "Saisons sèche et humide",
+    animals: ["Lion", "Éléphant", "Guépard", "Léopard", "Zèbre", "Gnou", "Buffle", "Girafe"],
+    tourism: "Safari très développé",
+    conservation: "Protection importante",
+    description: "Immense écosystème de savane célèbre pour ses grandes migrations de gnous et de zèbres."
+},
+
+{
+    id: 2,
+    name: "Kruger National Park",
+    country: "Afrique du Sud",
+    icon: "🐘",
+    type: "Savane",
+    area: "≈ 19 485 km²",
+    climate: "Subtropical",
+    animals: ["Éléphant", "Lion", "Léopard", "Rhinocéros", "Buffle", "Girafe", "Hippopotame"],
+    tourism: "Très développé",
+    conservation: "Protection importante",
+    description: "L'un des parcs les plus connus d'Afrique australe et une destination majeure pour les safaris."
+},
+
+{
+    id: 3,
+    name: "Chobe National Park",
+    country: "Botswana",
+    icon: "🐘",
+    type: "Zones humides",
+    area: "≈ 11 700 km²",
+    climate: "Semi-aride à humide selon les zones",
+    animals: ["Éléphant", "Buffle", "Lion", "Léopard", "Hippopotame", "Crocodile"],
+    tourism: "Safari très développé",
+    conservation: "Protection importante",
+    description: "Parc célèbre notamment pour ses populations d'éléphants et la rivière Chobe."
+},
+
+{
+    id: 4,
+    name: "Etosha National Park",
+    country: "Namibie",
+    icon: "🦏",
+    type: "Désert",
+    area: "≈ 22 935 km²",
+    climate: "Très sec",
+    animals: ["Éléphant", "Rhinocéros", "Lion", "Léopard", "Zèbre", "Girafe", "Oryx"],
+    tourism: "Très développé",
+    conservation: "Protection importante",
+    description: "Grand parc namibien connu pour son immense pan salin et ses points d'eau."
+},
+
+{
+    id: 5,
+    name: "Maasai Mara National Reserve",
+    country: "Kenya",
+    icon: "🦒",
+    type: "Savane",
+    area: "≈ 1 510 km²",
+    climate: "Savane tropicale",
+    animals: ["Lion", "Guépard", "Léopard", "Éléphant", "Buffle", "Zèbre", "Gnou"],
+    tourism: "Très développé",
+    conservation: "Protection importante",
+    description: "Réserve emblématique du Kenya, connue pour sa faune et sa proximité écologique avec le Serengeti."
+},
+
+{
+    id: 6,
+    name: "Hwange National Park",
+    country: "Zimbabwe",
+    icon: "🐘",
+    type: "Savane",
+    area: "≈ 14 651 km²",
+    climate: "Tropical saisonnier",
+    animals: ["Éléphant", "Lion", "Buffle", "Léopard", "Zèbre", "Girafe", "Lycaon"],
+    tourism: "Développé",
+    conservation: "Protection active",
+    description: "Le plus grand parc national du Zimbabwe, connu pour ses grandes populations d'éléphants."
+},
+
+{
+    id: 7,
+    name: "South Luangwa National Park",
+    country: "Zambie",
+    icon: "🦛",
+    type: "Savane",
+    area: "≈ 9 050 km²",
+    climate: "Tropical saisonnier",
+    animals: ["Éléphant", "Hippopotame", "Lion", "Léopard", "Buffle", "Girafe", "Lycaon"],
+    tourism: "Safari développé",
+    conservation: "Protection active",
+    description: "Parc célèbre pour sa biodiversité et ses safaris à pied."
+},
+
+{
+    id: 8,
+    name: "Volcanoes National Park",
+    country: "Rwanda",
+    icon: "🦍",
+    type: "Montagne",
+    area: "≈ 160 km²",
+    climate: "Montagneux et humide",
+    animals: ["Gorille des montagnes", "Singe doré", "Buffle", "Hyène"],
+    tourism: "Gorilla trekking",
+    conservation: "Protection élevée",
+    description: "Parc montagneux rwandais célèbre pour les gorilles des montagnes."
+}
+
+];
+
+
+/* =========================================================
+   DONNÉES DES ANIMAUX
+========================================================= */
+
+const animals = [
+
+{
+    id: 101,
+    name: "Lion d'Afrique",
+    icon: "🦁",
+    category: "Mammifère",
+    habitat: "Savane, prairies et zones boisées",
+    activity: "Principalement crépusculaire et nocturne",
+    social: "Vie sociale en groupe",
+    food: "Carnivore",
+    weight: "Mâle souvent 150–250 kg ; variation selon les populations",
+    size: "Environ 1,7–2,5 m pour le corps",
+    babies: "Souvent 1–4 petits",
+    gestation: "Environ 3,5 mois",
+    lifespan: "Souvent 10–15 ans à l'état sauvage, variable",
+    threats: "Perte d'habitat, conflits avec l'homme, diminution des proies",
+    status: "Vulnérable",
+    description: "Grand félin social vivant principalement dans les savanes africaines."
+},
+
+{
+    id: 102,
+    name: "Éléphant de savane d'Afrique",
+    icon: "🐘",
+    category: "Mammifère",
+    habitat: "Savane, forêts claires et zones humides",
+    activity: "Diurne et parfois nocturne",
+    social: "Groupes familiaux",
+    food: "Herbivore",
+    weight: "Plusieurs tonnes chez les adultes",
+    size: "Jusqu'à plusieurs mètres de hauteur",
+    babies: "Généralement 1 petit",
+    gestation: "Environ 22 mois",
+    lifespan: "Souvent plusieurs décennies",
+    threats: "Braconnage, perte d'habitat et conflits humains",
+    status: "En danger",
+    description: "Le plus grand animal terrestre actuel et une espèce clé de nombreux écosystèmes africains."
+},
+
+{
+    id: 103,
+    name: "Gorille des montagnes",
+    icon: "🦍",
+    category: "Mammifère",
+    habitat: "Forêts de montagne",
+    activity: "Principalement diurne",
+    social: "Groupes familiaux",
+    food: "Herbivore",
+    weight: "Les adultes peuvent dépasser 100 kg",
+    size: "Grand primate terrestre",
+    babies: "Généralement 1 petit",
+    gestation: "Environ 8,5 mois",
+    lifespan: "Plusieurs décennies",
+    threats: "Maladies, perte d'habitat et perturbations humaines",
+    status: "En danger",
+    description: "Grand primate vivant dans les forêts montagneuses d'Afrique centrale et orientale."
+},
+
+{
+    id: 104,
+    name: "Guépard",
+    icon: "🐆",
+    category: "Mammifère",
+    habitat: "Savane et zones ouvertes",
+    activity: "Souvent diurne",
+    social: "Solitaire ou petits groupes",
+    food: "Carnivore",
+    weight: "Environ 20–70 kg selon sexe et individu",
+    size: "Corps élancé, environ 1,1–1,4 m",
+    babies: "Souvent plusieurs petits",
+    gestation: "Environ 3 mois",
+    lifespan: "Variable, généralement plus courte dans la nature",
+    threats: "Perte d'habitat, conflits humains et faible diversité génétique",
+    status: "Vulnérable",
+    description: "Félin spécialisé dans la vitesse et les poursuites rapides en terrain ouvert."
+},
+
+{
+    id: 105,
+    name: "Girafe",
+    icon: "🦒",
+    category: "Mammifère",
+    habitat: "Savane et zones boisées",
+    activity: "Jour et nuit",
+    social: "Groupes variables",
+    food: "Herbivore",
+    weight: "Plusieurs centaines de kilogrammes",
+    size: "Peut dépasser 5 m de hauteur",
+    babies: "Généralement 1 petit",
+    gestation: "Environ 15 mois",
+    lifespan: "Souvent plus de 20 ans",
+    threats: "Perte d'habitat et activités humaines",
+    status: "Vulnérable",
+    description: "Mammifère emblématique reconnaissable à son long cou et à ses longues pattes."
+},
+
+{
+    id: 106,
+    name: "Hippopotame",
+    icon: "🦛",
+    category: "Mammifère",
+    habitat: "Rivières, lacs et zones humides",
+    activity: "Principalement nocturne pour l'alimentation",
+    social: "Groupes",
+    food: "Herbivore",
+    weight: "Environ 1 300–3 200 kg",
+    size: "Environ 3–5 m de longueur",
+    babies: "Généralement 1 petit",
+    gestation: "Environ 8 mois",
+    lifespan: "Environ 40 ans ou plus",
+    threats: "Perte d'habitat, chasse et conflits",
+    status: "Vulnérable",
+    description: "Grand mammifère semi-aquatique vivant principalement près de l'eau."
+},
+
+{
+    id: 107,
+    name: "Rhinocéros noir",
+    icon: "🦏",
+    category: "Mammifère",
+    habitat: "Savane, broussailles et zones boisées",
+    activity: "Variable, souvent crépusculaire ou nocturne",
+    social: "Plutôt solitaire",
+    food: "Herbivore",
+    weight: "Environ 800–1 400 kg",
+    size: "Environ 3–3,8 m",
+    babies: "Généralement 1 petit",
+    gestation: "Environ 15 mois",
+    lifespan: "Plusieurs décennies",
+    threats: "Braconnage et perte d'habitat",
+    status: "En danger critique",
+    description: "Rhinocéros africain fortement menacé, notamment par le braconnage pour sa corne."
+},
+
+{
+    id: 108,
+    name: "Zèbre des plaines",
+    icon: "🦓",
+    category: "Mammifère",
+    habitat: "Prairies et savanes",
+    activity: "Principalement diurne",
+    social: "Groupes et troupeaux",
+    food: "Herbivore",
+    weight: "Environ 175–450 kg",
+    size: "Environ 2–2,5 m de longueur",
+    babies: "Généralement 1 petit",
+    gestation: "Environ 12–13 mois",
+    lifespan: "Plus de 20 ans possible",
+    threats: "Perte d'habitat et pression humaine",
+    status: "Préoccupation mineure",
+    description: "Zèbre très répandu dans les savanes et prairies d'Afrique orientale et australe."
+}
+
+];
+
+
+/* =========================================================
+   AFFICHAGE
+========================================================= */
+
+function escapeHTML(value) {
+    return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+}
+
+function renderParks(list = parks) {
+
+    const grid = document.getElementById("parkGrid");
+
+    grid.innerHTML = list.map(park => {
+
+        let statusClass = "green";
+
+        if (park.conservation.toLowerCase().includes("active")) {
+            statusClass = "yellow";
+        }
+
+        return `
+            <article class="card park-card">
+
+                <div class="card-top">
+                    <div class="card-icon">${park.icon}</div>
+
+                    <div>
+                        <h3>${escapeHTML(park.name)}</h3>
+                        <p>📍 ${escapeHTML(park.country)}</p>
+                    </div>
+                </div>
+
+                <div class="card-body">
+
+                    <div class="info-line">
+                        <span>📐 Superficie</span>
+                        <strong>${escapeHTML(park.area)}</strong>
+                    </div>
+
+                    <div class="info-line">
+                        <span>🌳 Milieu</span>
+                        <strong>${escapeHTML(park.type)}</strong>
+                    </div>
+
+                    <div class="info-line">
+                        <span>🌦️ Climat</span>
+                        <strong>${escapeHTML(park.climate)}</strong>
+                    </div>
+
+                    <div class="info-line">
+                        <span>🛡️ Conservation</span>
+                        <span class="badge ${statusClass}">
+                            ${escapeHTML(park.conservation)}
+                        </span>
+                    </div>
+
+                    <div class="card-actions">
+                        <button class="primary-button"
+                                onclick="openParkById(${park.id})">
+                            Voir la fiche complète
+                        </button>
+                    </div>
+
+                </div>
+            </article>
+        `;
+
+    }).join("");
+
+    document.getElementById("parkNoResults").style.display =
+        list.length ? "none" : "block";
+}
+
+
+function renderAnimals(list = animals) {
+
+    const grid = document.getElementById("animalGrid");
+
+    grid.innerHTML = list.map(animal => {
+
+        let statusClass = "green";
+
+        if (
+            animal.status.toLowerCase().includes("danger") ||
+            animal.status.toLowerCase().includes("critique")
+        ) {
+            statusClass = "red";
+        }
+
+        return `
+            <article class="card animal-card">
+
+                <div class="card-top">
+                    <div class="animal-big">${animal.icon}</div>
+
+                    <div>
+                        <h3>${escapeHTML(animal.name)}</h3>
+                        <p>${escapeHTML(animal.category)}</p>
+                    </div>
+                </div>
+
+                <div class="card-body">
+
+                    <div class="info-line">
+                        <span>🍖 Alimentation</span>
+                        <strong>${escapeHTML(animal.food)}</strong>
+                    </div>
+
+                    <div class="info-line">
+                        <span>🏠 Habitat</span>
+                        <strong>${escapeHTML(animal.habitat)}</strong>
+                    </div>
+
+                    <div class="info-line">
+                        <span>👶 Petits</span>
+                        <strong>${escapeHTML(animal.babies)}</strong>
+                    </div>
+
+                    <div class="info-line">
+                        <span>⚠️ Statut</span>
+                        <span class="badge ${statusClass}">
+                            ${escapeHTML(animal.status)}
+                        </span>
+                    </div>
+
+                    <div class="card-actions">
+                        <button class="primary-button"
+                                onclick="openAnimal(${animal.id})">
+                            Voir la fiche complète
+                        </button>
+                    </div>
+
+                </div>
+            </article>
+        `;
+
+    }).join("");
+
+    document.getElementById("animalNoResults").style.display =
+        list.length ? "none" : "block";
+}
+
+
+/* =========================================================
+   RECHERCHE DES PARCS
+========================================================= */
+
+function filterParks() {
+
+    const search = document
+        .getElementById("parkSearch")
+        .value
+        .toLowerCase()
+        .trim();
+
+    const country = document.getElementById("countryFilter").value;
+    const type = document.getElementById("parkTypeFilter").value;
+
+    const filtered = parks.filter(park => {
+
+        const text = [
+            park.name,
+            park.country,
+            park.type,
+            park.climate,
+            ...park.animals
+        ].join(" ").toLowerCase();
+
+        const matchesSearch = text.includes(search);
+        const matchesCountry = !country || park.country === country;
+        const matchesType = !type || park.type === type;
+
+        return matchesSearch && matchesCountry && matchesType;
+    });
+
+    renderParks(filtered);
+}
+
+
+/* =========================================================
+   RECHERCHE DES ANIMAUX
+========================================================= */
+
+function filterAnimals() {
+
+    const search = document
+        .getElementById("animalSearch")
+        .value
+        .toLowerCase()
+        .trim();
+
+    const filtered = animals.filter(animal => {
+
+        const text = [
+            animal.name,
+            animal.category,
+            animal.habitat,
+            animal.activity,
+            animal.social,
+            animal.food,
+            animal.status
+        ].join(" ").toLowerCase();
+
+        return text.includes(search);
+    });
+
+    renderAnimals(filtered);
+}
+
+
+/* =========================================================
+   RECHERCHE GÉNÉRALE
+========================================================= */
+
+function globalSearch() {
+
+    const search = document
+        .getElementById("globalSearch")
+        .value
+        .toLowerCase()
+        .trim();
+
+    if (!search) {
+        return;
+    }
+
+    const park = parks.find(p =>
+        [
+            p.name,
+            p.country,
+            p.type,
+            ...p.animals
+        ].join(" ").toLowerCase().includes(search)
+    );
+
+    if (park) {
+        document.getElementById("parkSearch").value = search;
+        filterParks();
+        goTo("parcs");
+        return;
+    }
+
+    const animal = animals.find(a =>
+        [
+            a.name,
+            a.category,
+            a.habitat,
+            a.food
+        ].join(" ").toLowerCase().includes(search)
+    );
+
+    if (animal) {
+        document.getElementById("animalSearch").value = search;
+        filterAnimals();
+        goTo("animaux");
+        return;
+    }
+
+    document.getElementById("parkSearch").value = search;
+    filterParks();
+    goTo("parcs");
+}
+
+
+/* =========================================================
+   FICHE PARC
+========================================================= */
+
+function openParkById(id) {
+
+    const park = parks.find(p => p.id === id);
+
+    if (!park) {
+        return;
+    }
+
+    const animalsList = park.animals
+        .map(animal => `<span class="badge green">${escapeHTML(animal)}</span>`)
+        .join(" ");
+
+    document.getElementById("modalContent").innerHTML = `
+
+        <h2>${park.icon} ${escapeHTML(park.name)}</h2>
+
+        <p>
+            📍 <strong>${escapeHTML(park.country)}</strong>
+        </p>
+
+        <div class="modal-section">
+
+            <h3>🌍 Présentation</h3>
+
+            <p>${escapeHTML(park.description)}</p>
+
+        </div>
+
+        <div class="modal-section">
+
+            <h3>📊 Informations</h3>
+
+            <div class="detail-grid">
+
+                <div class="detail">
+                    📐 <strong>Superficie</strong><br>
+                    ${escapeHTML(park.area)}
+                </div>
+
+                <div class="detail">
+                    🌳 <strong>Milieu</strong><br>
+                    ${escapeHTML(park.type)}
+                </div>
+
+                <div class="detail">
+                    🌦️ <strong>Climat</strong><br>
+                    ${escapeHTML(park.climate)}
+                </div>
+
+                <div class="detail">
+                    🏨 <strong>Tourisme</strong><br>
+                    ${escapeHTML(park.tourism)}
+                </div>
+
+                <div class="detail">
+                    🛡️ <strong>Conservation</strong><br>
+                    ${escapeHTML(park.conservation)}
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="modal-section">
+
+            <h3>🦁 Animaux présents / associés</h3>
+
+            <div style="display:flex;gap:7px;flex-wrap:wrap;">
+                ${animalsList}
+            </div>
+
+        </div>
+
+        <div class="modal-section">
+
+            <h3>ℹ️ À propos des données</h3>
+
+            <p>
+                Les informations de cette première version sont présentées
+                à titre informatif. Les estimations de populations animales,
+                de visiteurs, de rangers et de menaces doivent être vérifiées
+                avec des sources officielles avant publication comme données
+                statistiques définitives.
+            </p>
+
+        </div>
+    `;
+
+    document.getElementById("modal").classList.add("show");
+}
+
+
+/* =========================================================
+   FICHE ANIMAL
+========================================================= */
+
+function openAnimal(id) {
+
+    const animal = animals.find(a => a.id === id);
+
+    if (!animal) {
+        return;
+    }
+
+    document.getElementById("modalContent").innerHTML = `
+
+        <h2>${animal.icon} ${escapeHTML(animal.name)}</h2>
+
+        <p>
+            <strong>${escapeHTML(animal.category)}</strong>
+        </p>
+
+        <div class="modal-section">
+
+            <h3>🧠 Mode de vie</h3>
+
+            <div class="detail-grid">
+
+                <div class="detail">
+                    🏠 <strong>Habitat</strong><br>
+                    ${escapeHTML(animal.habitat)}
+                </div>
+
+                <div class="detail">
+                    ☀️ <strong>Activité</strong><br>
+                    ${escapeHTML(animal.activity)}
+                </div>
+
+                <div class="detail">
+                    👥 <strong>Vie sociale</strong><br>
+                    ${escapeHTML(animal.social)}
+                </div>
+
+                <div class="detail">
+                    🍖 <strong>Alimentation</strong><br>
+                    ${escapeHTML(animal.food)}
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="modal-section">
+
+            <h3>📏 Taille et poids</h3>
+
+            <div class="detail-grid">
+
+                <div class="detail">
+                    ⚖️ <strong>Poids</strong><br>
+                    ${escapeHTML(animal.weight)}
+                </div>
+
+                <div class="detail">
+                    📏 <strong>Taille</strong><br>
+                    ${escapeHTML(animal.size)}
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="modal-section">
+
+            <h3>👶 Reproduction</h3>
+
+            <div class="detail-grid">
+
+                <div class="detail">
+                    👶 <strong>Nombre de petits</strong><br>
+                    ${escapeHTML(animal.babies)}
+                </div>
+
+                <div class="detail">
+                    🤰 <strong>Gestation</strong><br>
+                    ${escapeHTML(animal.gestation)}
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="modal-section">
+
+            <h3>❤️ Espérance de vie</h3>
+
+            <p>${escapeHTML(animal.lifespan)}</p>
+
+        </div>
+
+        <div class="modal-section">
+
+            <h3>⚠️ Menaces</h3>
+
+            <p>${escapeHTML(animal.threats)}</p>
+
+        </div>
+
+        <div class="modal-section">
+
+            <h3>🛡️ Statut de conservation</h3>
+
+            <p>
+                <span class="badge red">
+                    ${escapeHTML(animal.status)}
+                </span>
+            </p>
+
+        </div>
+
+        <div class="modal-section">
+
+            <h3>💡 Présentation</h3>
+
+            <p>${escapeHTML(animal.description)}</p>
+
+        </div>
+
+    `;
+
+    document.getElementById("modal").classList.add("show");
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+function closeModal() {
+    document.getElementById("modal").classList.remove("show");
+}
+
+document.getElementById("modal").addEventListener("click", function(event) {
+
+    if (event.target === this) {
+        closeModal();
+    }
+
+});
+
+document.addEventListener("keydown", function(event) {
+
+    if (event.key === "Escape") {
+        closeModal();
+    }
+
+});
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function goTo(id) {
+
+    const element = document.getElementById(id);
+
+    if (element) {
+        element.scrollIntoView({
+            behavior: "smooth"
+        });
+    }
+
+    document.getElementById("navLinks").classList.remove("open");
+}
+
+
+function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("open");
+}
+
+
+/* =========================================================
+   INITIALISATION
+========================================================= */
+
+document.getElementById("parkCount").textContent = parks.length;
+document.getElementById("animalCount").textContent = animals.length;
+
+renderParks();
+renderAnimals();
+
+</script>
+
 </body>
 </html>
